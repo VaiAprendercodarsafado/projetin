@@ -1,18 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 :root {
-    --cor-de-fundo: #E8ECEF;
-    --azul: #1565C0;
-    --branco: #212121;
-    --botao-ativo: #42A5F5;
-    --botao-inativo: rgba(66, 165, 245, 0.6);
-    --texto-fundo: rgba(66, 165, 245, 0.15);
+    --primary-color: #1565C0;
+    --secondary-color: #E0E0E0;
+    --background-color: #F5F5F5;
+    --text-color: #212121;
+    --button-active: #42A5F5;
+    --button-inactive: rgba(66, 165, 245, 0.6);
 }
 
 body {
-    background-color: var(--cor-de-fundo);
-    color: var(--branco);
     font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
     margin: 0;
     padding: 20px;
     animation: fadeIn 1s ease-in;
@@ -24,12 +24,7 @@ body {
 }
 
 .conteudo-principal {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     max-width: 900px;
-    width: 100%;
     margin: 0 auto;
     background: white;
     border-radius: 12px;
@@ -38,57 +33,39 @@ body {
 }
 
 .titulo-principal {
-    text-align: left;
-    width: 100%;
     font-size: 32px;
-    color: var(--azul);
-}
-
-.titulo-principal span {
-    color: var(--azul);
+    color: var(--primary-color);
+    text-align: center;
 }
 
 .botoes {
     display: flex;
-    flex-wrap: wrap;
+    justify-content: center;
     gap: 10px;
+    margin-bottom: 20px;
 }
 
 .botao {
-    font-family: 'Roboto', sans-serif;
-    background-color: var(--botao-inativo);
+    padding: 12px 24px;
+    background-color: var(--button-inactive);
     color: white;
-    padding: 12px;
-    font-size: 16px;
     border: none;
+    border-radius: 8px;
     cursor: pointer;
-    flex: 1;
     transition: all 0.3s ease;
 }
 
 .botao:hover {
     transform: scale(1.05);
-    background-color: var(--botao-ativo);
+    background-color: var(--button-active);
 }
 
 .botao.ativo {
-    background-color: var(--botao-ativo);
-    border-bottom: 3px solid var(--azul);
-}
-
-.botao:first-child {
-    border-radius: 8px 0 0 8px;
-}
-
-.botao:last-child {
-    border-radius: 0 8px 8px 0;
+    background-color: var(--button-active);
 }
 
 .abas-textos {
-    background-color: var(--texto-fundo);
-    padding: 30px;
-    border-radius: 0 0 12px 12px;
-    width: 100%;
+    position: relative;
 }
 
 .aba-conteudo {
@@ -107,19 +84,19 @@ body {
 .aba-conteudo-titulo-principal {
     font-size: 26px;
     text-align: center;
-    color: var(--branco);
+    color: var(--text-color);
 }
 
 .aba-descricao {
     font-size: 16px;
     text-align: center;
-    color: var(--branco);
+    color: var(--text-color);
     margin-bottom: 20px;
 }
 
 .aba-conteudo-titulo-secundario {
     text-align: center;
-    color: var(--azul);
+    color: var(--primary-color);
     text-transform: uppercase;
     font-size: 14px;
 }
@@ -127,25 +104,22 @@ body {
 .contador {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
     gap: 30px;
+    margin-bottom: 20px;
 }
 
 .contador-digito {
-    padding: 0 20px;
     text-align: center;
-    min-width: 100px;
 }
 
 .contador-digito-numero {
     font-size: 56px;
-    margin: 0;
+    font-weight: bold;
 }
 
 .contador-digito-texto {
-    color: var(--azul);
     font-size: 18px;
-    margin: 0;
+    color: var(--primary-color);
 }
 
 .progresso {
@@ -153,23 +127,23 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 15px;
-    margin-top: 30px;
 }
 
 .progresso input {
     width: 80px;
     padding: 8px;
-    border: 1px solid var(--azul);
+    border: 1px solid var(--primary-color);
     border-radius: 6px;
     font-size: 16px;
 }
 
 .progresso canvas {
-    margin: 20px 0;
+    width: 200px;
+    height: 200px;
 }
 
 .botao-concluir {
-    background-color: var(--azul);
+    background-color: var(--primary-color);
     color: white;
     padding: 10px 20px;
     border: none;
@@ -182,11 +156,15 @@ body {
     background-color: #0D47A1;
 }
 
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
     .botoes {
         flex-direction: column;
     }
     .botao {
-        border-radius: 8px;
+        width: 100%;
+    }
+    .contador {
+        flex-direction: column;
+        align-items: center;
     }
 }
