@@ -1,20 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 :root {
-    --cor-de-fundo: #F5F5F5;
-    --azul: #1976D2;
-    --branco: #333;
+    --cor-de-fundo: #E8ECEF;
+    --azul: #1565C0;
+    --branco: #212121;
     --botao-ativo: #42A5F5;
-    --botao-inativo: rgba(66, 165, 245, 0.5);
-    --texto-fundo: rgba(66, 165, 245, 0.2);
+    --botao-inativo: rgba(66, 165, 245, 0.6);
+    --texto-fundo: rgba(66, 165, 245, 0.15);
 }
 
 body {
     background-color: var(--cor-de-fundo);
     color: var(--branco);
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 20px;
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .conteudo-principal {
@@ -22,19 +28,19 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 800px;
+    max-width: 900px;
     width: 100%;
     margin: 0 auto;
     background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
 }
 
 .titulo-principal {
     text-align: left;
     width: 100%;
-    font-size: 28px;
+    font-size: 32px;
     color: var(--azul);
 }
 
@@ -42,49 +48,64 @@ body {
     color: var(--azul);
 }
 
-.botao {
-    font-family: 'Open Sans', sans-serif;
-    background-color: var(--botao-inativo);
-    color: white;
-    display: flex;
-    justify-content: center;
-    padding: 1em;
-    font-size: 16px;
-    align-items: center;
-    width: 100%;
-    border: none;
-    cursor: pointer;
-}
-
-.botao:first-child {
-    border-radius: 10px 0 0 0;
-}
-
 .botoes {
     display: flex;
     flex-wrap: wrap;
+    gap: 10px;
+}
+
+.botao {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--botao-inativo);
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    flex: 1;
+    transition: all 0.3s ease;
+}
+
+.botao:hover {
+    transform: scale(1.05);
+    background-color: var(--botao-ativo);
 }
 
 .botao.ativo {
     background-color: var(--botao-ativo);
+    border-bottom: 3px solid var(--azul);
+}
+
+.botao:first-child {
+    border-radius: 8px 0 0 8px;
+}
+
+.botao:last-child {
+    border-radius: 0 8px 8px 0;
 }
 
 .abas-textos {
     background-color: var(--texto-fundo);
-    padding: 20px;
-    border-radius: 0 0 10px 10px;
-}
-
-.aba-conteudo.ativo {
-    display: block;
+    padding: 30px;
+    border-radius: 0 0 12px 12px;
+    width: 100%;
 }
 
 .aba-conteudo {
     display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+.aba-conteudo.ativo {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .aba-conteudo-titulo-principal {
-    font-size: 24px;
+    font-size: 26px;
     text-align: center;
     color: var(--branco);
 }
@@ -107,55 +128,65 @@ body {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 30px;
 }
 
 .contador-digito {
-    padding: 0 16px;
+    padding: 0 20px;
     text-align: center;
-    min-width: 80px;
+    min-width: 100px;
 }
 
 .contador-digito-numero {
-    font-size: 48px;
+    font-size: 56px;
     margin: 0;
 }
 
 .contador-digito-texto {
     color: var(--azul);
-    font-size: 16px;
+    font-size: 18px;
     margin: 0;
 }
 
 .progresso {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    gap: 10px;
-    margin-top: 20px;
+    gap: 15px;
+    margin-top: 30px;
 }
 
 .progresso input {
-    width: 60px;
-    padding: 5px;
+    width: 80px;
+    padding: 8px;
     border: 1px solid var(--azul);
-    border-radius: 5px;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.progresso canvas {
+    margin: 20px 0;
 }
 
 .botao-concluir {
     background-color: var(--azul);
     color: white;
-    padding: 8px 16px;
+    padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-@media screen and (min-width: 768px) {
-    .botao:first-child {
-        border-radius: 10px 0 0 0;
+.botao-concluir:hover {
+    background-color: #0D47A1;
+}
+
+@media screen and (max-width: 768px) {
+    .botoes {
+        flex-direction: column;
     }
-    .botao:last-child {
-        border-radius: 0 10px 0 0;
+    .botao {
+        border-radius: 8px;
     }
 }
