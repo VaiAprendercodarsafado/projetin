@@ -1,17 +1,17 @@
-// Select all buttons and tab contents
+// Selecionando todos os botões e conteúdos das abas
 const botoes = document.querySelectorAll(".botao");
-const textos = document.querySelectorAll(".aba-conteudo");
+const abas = document.querySelectorAll(".aba-conteudo");
 const inputsProgresso = document.querySelectorAll(".progresso input");
 const botoesConcluir = document.querySelectorAll(".botao-concluir");
 const contadores = document.querySelectorAll(".contador");
 
-// Define target dates for each goal (30, 60, 90 days from now)
+// Definindo datas alvo (30, 60, 90 dias a partir de hoje)
 const tempoObjetivo1 = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
 const tempoObjetivo2 = new Date(Date.now() + 60 * 24 * 60 * 60 * 1000);
 const tempoObjetivo3 = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000);
 const tempos = [tempoObjetivo1, tempoObjetivo2, tempoObjetivo3];
 
-// Function to calculate remaining time
+// Função pra calcular o tempo restante
 function calculaTempo(tempoObjetivo) {
     let tempoAtual = new Date();
     let tempoFinal = tempoObjetivo - tempoAtual;
@@ -24,7 +24,7 @@ function calculaTempo(tempoObjetivo) {
     }
 }
 
-// Update the countdown every second
+// Atualiza os contadores a cada segundo
 function atualizaCronometro() {
     for (let i = 0; i < contadores.length; i++) {
         let [dias, horas] = calculaTempo(tempos[i]);
@@ -33,11 +33,13 @@ function atualizaCronometro() {
     }
 }
 
+// Inicia o cronômetro
 setInterval(atualizaCronometro, 1000);
 
-// Initialize charts
+// Array pra guardar os gráficos
 let charts = [];
 
+// Função pra criar gráfico de rosca
 function criarGrafico(abaIndex) {
     let progresso = inputsProgresso[abaIndex].value || 0;
     let ctx = document.getElementById("grafico" + abaIndex).getContext("2d");
@@ -61,7 +63,21 @@ function criarGrafico(abaIndex) {
     charts[abaIndex] = chart;
 }
 
-// Load progress from local storage and create charts
+// Navegação entre abas
+for (let i = 0; i < botoes.length; i++) {
+    botoes[i].onclick = function () {
+        // Remove a classe ativo de todos os botões e abas
+        for (let j = 0; j < botoes.length; j++) {
+            botoes[j].classList.remove("ativo");
+            abas[j].classList.remove("ativo");
+        }
+        // Adiciona a classe ativo no botão e aba clicados
+        botoes[i].classList.add("ativo");
+        abas[i].classList.add("ativo");
+    };
+}
+
+// Carrega progresso salvo e cria gráficos
 for (let i = 0; i < inputsProgresso.length; i++) {
     let progressoSalvo = localStorage.getItem("progresso" + i);
     if (progressoSalvo) {
@@ -77,7 +93,7 @@ for (let i = 0; i < inputsProgresso.length; i++) {
     };
 }
 
-// Conclude button functionality
+// Botões de concluir
 for (let i = 0; i < botoesConcluir.length; i++) {
     botoesConcluir[i].onclick = function () {
         localStorage.setItem("progresso" + i, "100");
@@ -87,17 +103,5 @@ for (let i = 0; i < botoesConcluir.length; i++) {
         document.getElementById("dias" + i).textContent = 0;
         document.getElementById("horas" + i).textContent = 0;
         alert("Meta concluída!");
-    };
-}
-
-// Tab switching
-for (let i = 0; i < botoes.length; i++) {
-    botoes[i].onclick = function () {
-        for (let j = 0; j < botoes.length; j++) {
-            botoes[j].classList.remove("ativo");
-            textos[j].classList.remove("ativo");
-        }
-        botoes[i].classList.add("ativo");
-        textos[i].classList.add("ativo");
     };
 }
