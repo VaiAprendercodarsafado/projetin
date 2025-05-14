@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planejador de Projetos</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 </head>
 <body>
     <section class="conteudo-principal">
@@ -33,6 +34,7 @@
                     <div class="progresso">
                         <label for="progresso0">Progresso (%):</label>
                         <input type="number" id="progresso0" min="0" max="100" value="0">
+                        <canvas id="grafico0" width="200" height="200"></canvas>
                         <button class="botao-concluir" data-aba="0">Concluir Projeto</button>
                     </div>
                 </div>
@@ -53,6 +55,7 @@
                     <div class="progresso">
                         <label for="progresso1">Progresso (%):</label>
                         <input type="number" id="progresso1" min="0" max="100" value="0">
+                        <canvas id="grafico1" width="200" height="200"></canvas>
                         <button class="botao-concluir" data-aba="1">Concluir Projeto</button>
                     </div>
                 </div>
@@ -73,6 +76,7 @@
                     <div class="progresso">
                         <label for="progresso2">Progresso (%):</label>
                         <input type="number" id="progresso2" min="0" max="100" value="0">
+                        <canvas id="grafico2" width="200" height="200"></canvas>
                         <button class="botao-concluir" data-aba="2">Concluir Projeto</button>
                     </div>
                 </div>
